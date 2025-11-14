@@ -1,5 +1,5 @@
 # Start with a base image containing Java runtime
-FROM openjdk:17-jdk-alpine
+FROM eclipse-temurin:17-jdk-alpine
 
 # Add Maintainer Info
 LABEL maintainer="adsoft@live.com.mx"
@@ -8,7 +8,7 @@ LABEL maintainer="adsoft@live.com.mx"
 VOLUME /tmp
 
 # Make port 8080 available to the world outside this container
-EXPOSE 8192
+EXPOSE 8080
 
 # The application's jar file
 ARG JAR_FILE=target/antlr-0.0.1-SNAPSHOT.jar
@@ -20,7 +20,8 @@ ADD ${JAR_FILE} antlr-api.jar
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/antlr-api.jar"]
 
 # docker build
-# sudo docker build -t <dockerhub-user>/ng5-api .
+# sudo docker build -t omaraz17/ng5-api .
 
 # docker run
 # sudo docker run --name <linuxuser>-api -p 8xxx:8080 -d <dockerhub-user>/ng5-api  
+# sudo docker run --name omaraz17-api -p 8080:8080 -d omaraz17/ng5-api      
